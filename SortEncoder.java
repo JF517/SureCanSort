@@ -3,23 +3,20 @@ import java.util.ArrayList;
 
 public class SortEncoder{
 
-    private int sortSignal = 0;
     private Random rand = new Random();
-    private ArrayList<Integer> encodedInput;
 
     public SortEncoder(){
-        this.sortSignal = rand.nextInt(10);
+        
     }
 
-    public void encode(ArrayList<Integer> input){
+    public ArrayList<Integer> encode(ArrayList<Integer> input){
 
+        int sortSignal = rand.nextInt(3);
         ArrayList<Integer> encodedInput = input;
-        this.encodedInput.add(this.sortSignal);
-
-        System.out.println(input.toString());
+        encodedInput.add(sortSignal);
         System.out.println(encodedInput.toString());
 
-
+        return encodedInput;
 
     }
 }

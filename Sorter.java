@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Sorter {
 
     private int[] toSort;
-    private int sortSelect = 0;
+    private int sortSelect = -1;
 
     public Sorter(){
 
@@ -12,7 +12,10 @@ public class Sorter {
     public void loadSorter(ArrayList<Integer> input){
 
         this.sortSelect = input.get(input.size()-1);
+        input.remove(input.size()-1);
         this.toSort = new int[input.size()];
+
+        System.out.println(sortSelect);
 
         for(int i = 0; i < toSort.length; i++){
             this.toSort[i] = input.get(i);
@@ -23,6 +26,7 @@ public class Sorter {
         if(sortSelect == 0) return selectionSort();
         else if(sortSelect == 1) return bubbleSort();
         else if(sortSelect == 2) return insertionSort();
+        else if(sortSelect == 3) return gnomeSort();
         else return toSort;
     }
 
@@ -76,6 +80,28 @@ public class Sorter {
 
         return insSort;
 
+    }
+    
+    public int[] gnomeSort()
+    {
+        int[] gnSort = toSort;
+        int n = gnSort.length;
+        int index = 0;
+  
+        while (index < n) {
+            if (index == 0)
+                index++;
+            if (gnSort[index] >= gnSort[index - 1])
+                index++;
+            else {
+                int temp = 0;
+                temp = gnSort[index];
+                gnSort[index] = gnSort[index - 1];
+                gnSort[index - 1] = temp;
+                index--;
+            }
+        }
+        return gnSort;
     }
 
 }
